@@ -1,0 +1,11 @@
+# don't check in the config.js as it has all the keys to all the things
+config/default.json
+.idea
+.DS_Store
+node_modules
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

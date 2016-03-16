@@ -1,0 +1,31 @@
+{
+    "slack": {
+        "url": "YOUR SLACK INCOMING WEBHOOK URL",
+        "token": "YOUR SLACK TOKEN",
+        "title": "Awesome",
+        "post_username": "Awesome",
+        "post_channel": "awesomeness",
+        "post_emoji": ":thumbsup:"
+    },
+    "aws": {
+        "enabled": false,
+        "credentials": {
+            "accessKeyId": "YOUR AWS ACCESS KEY",
+            "secretAccessKey": "YOUR AWS ACCESS SECRET",
+            "region": "us-east-1"
+        },
+        "dynamo": {
+            "tablename": "awesome_things"
+        }
+    },
+    "google": {
+        "enabled": true,
+        "spreadsheetId": "YOUR GOOGLE SPREADSHEET ID FROM URL",
+        "worksheetId": "od6",
+        "oauth2": {
+            "client_id": "YOUR GOOGLE OAUTH ID",
+            "client_secret": "YOUR GOOGLE OAUTH SECERET",
+            "refresh_token": "YOUR GOOGLE REFRESH TOKEN"
+        }
+    }
+}

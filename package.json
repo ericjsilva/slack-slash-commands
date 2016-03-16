@@ -1,0 +1,39 @@
+{
+  "name": "awesomeness",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Eric Silva @ericjsilva",
+  "description": "A Node/Express API endpoint which can by run on Heroku or Elasticbeanstalk allowing Slack to post cool things your team does into a Google Sheet and optionally a DynamoDB table",
+  "keywords": [
+    "github",
+    "slack",
+    "heroku",
+    "google",
+    "aws",
+    "dynamodb"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/github/hubot/raw/master/LICENSE"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericjsilva/slack-awesomeness"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "aws-dynamodb": "^0.1.27",
+    "body-parser": "^1.12.3",
+    "compression": "^1.2.2",
+    "date-format": "0.0.2",
+    "debug": "~2.1.1",
+    "edit-google-spreadsheet": "^0.2.19",
+    "express": "~4.12.2",
+    "node-slackr": "^0.1.0",
+    "config": "^1.19.0"
+  }
+}
