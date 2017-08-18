@@ -98,10 +98,11 @@ module.exports = function (router) {
       gdocDate: format.asString('MM/dd/yyyy hh:mm:ss', timestamp)
     };
 
-    //console.log("TOKEN: " + token);
-    //console.log("USER: " + userName);
-    //console.log("CMD: " + cmd);
-    //console.log("TEXT: " + text);
+    // console.log("TOKEN: " + data.token);
+    // console.log("USER: " + data.userName);
+    // console.log("CMD: " + data.cmd);
+    // console.log("THING: " + data.text);
+    // console.log("DURATION: " + data.duration);
 
     // Check that the slack token is valid.
     if (data.token != slackToken) {
@@ -148,7 +149,7 @@ module.exports = function (router) {
         }
 
         slack.notify(message);
-        res.send('Sucessfully recorded that you spent ${data.duration} minutes on ${data.text}.');
+        res.send('Successfully recorded that you spent ' + data.duration + ' minutes on ' + data.text + '.');
       } else {
         res.end();
       }
