@@ -67,7 +67,7 @@ const commandParser = function (commandText) {
     .resolve();
 
   return {
-    thing: commandText.substr(0, commandText.length-tokens.duration.length),
+    thing: commandText.substr(0, commandText.length-tokens.duration.length).trim(),
     duration: tokens.duration
   }
 }
