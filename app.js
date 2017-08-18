@@ -31,9 +31,10 @@ router.use(function(req, res, next) {
 
 // Home page route
 router.get('/', function(req, res) {
-    res.send(config.get('slack.title'))
+    res.send(config.get('default.title'))
 });
 
-require('./routes/slack.js')(router);
+require('./routes/awesome.js')(router);
+require('./routes/timeburn.js')(router);
 
 app.use('/', router);

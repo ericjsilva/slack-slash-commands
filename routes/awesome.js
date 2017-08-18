@@ -10,9 +10,9 @@ var genUUID = function () {
 Slack = require('node-slackr');
 
 var postDynamoDB = function (data) {
-    var awsCredentials = config.get('aws.credentials');
+    var awsCredentials = config.get('awesome.aws.credentials');
     var ddb = {
-        tableName: config.get('aws.dynamo.tablename')
+        tableName: config.get('awesome.aws.dynamo.tablename')
     };
     var DynamoDB = require('aws-dynamodb')(awsCredentials);
 
@@ -34,10 +34,10 @@ var postGDoc = function (data) {
 
     Spreadsheet.load({
         debug: true,
-        spreadsheetId: config.get('google.spreadsheetId'),
-        worksheetId: config.get('google.worksheetId'),
+        spreadsheetId: config.get('awesome.google.spreadsheetId'),
+        worksheetId: config.get('awesome.google.worksheetId'),
 
-        "oauth2": config.get('google.oauth2')
+        "oauth2": config.get('awesome.google.oauth2')
 
     }, function sheetReady(err, spreadsheet) {
         if (err) throw err;
@@ -59,10 +59,10 @@ var postGDoc = function (data) {
 };
 
 module.exports = function (router) {
-    router.post('/slack', function (req, res) {
+    router.post('/awesome', function (req, res) {
 
-        var slackWebhookUrl = config.get('slack.url');
-        var slackToken = config.get('slack.token');
+        var slackWebhookUrl = config.get('awesome.slack.url');
+        var slackToken = config.get('awesome.slack.token');
         var originChannelName = req.body.channel_name;
         //console.log("REQUEST: \n" + JSON.stringify(req.body));
         //console.log("Origin Channel: " + originChannelName);
@@ -104,16 +104,16 @@ module.exports = function (router) {
             }
 
             // Get the target channel name
-            var channels = config.get('slack.post_channel');
+            var channels = config.get('awesome.slack.post_channel');
             // If the name of the target channel is different than the origin, post to both channels.
             if (postOriginChannel != channels) {
-                channels = [config.get('slack.post_channel'), postOriginChannel];
+                channels = [config.get('awesome.slack.post_channel'), postOriginChannel];
             }
 
             slack = new Slack(slackWebhookUrl, {
-                username: config.get('slack.post_username'),
+                username: config.get('awesome.slack.post_username'),
                 channel: channels,
-                icon_emoji: config.get('slack.post_emoji')
+                icon_emoji: config.get('awesome.slack.post_emoji')
             });
 
             var message = {
@@ -122,10 +122,10 @@ module.exports = function (router) {
 
             if (data.cmd === '/awesome') {
 
-                if (config.aws.enabled) {
+                if (awesome.config.aws.enabled) {
                     postDynamoDB(data);
                 }
-                if (config.google.enabled) {
+                if (awesome.config.google.enabled) {
                     postGDoc(data);
                 }
 

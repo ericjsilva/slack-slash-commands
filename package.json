@@ -29,11 +29,12 @@
     "aws-dynamodb": "^0.1.27",
     "body-parser": "^1.12.3",
     "compression": "^1.2.2",
+    "config": "^1.19.0",
     "date-format": "0.0.2",
     "debug": "~2.1.1",
     "edit-google-spreadsheet": "^0.2.19",
     "express": "~4.12.2",
     "node-slackr": "^0.1.0",
-    "config": "^1.19.0"
+    "string-tokenizer": "0.0.8"
   }
 }
