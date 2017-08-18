@@ -140,10 +140,10 @@ module.exports = function (router) {
 
       if (data.cmd === '/timeburn') {
 
-        if (timeburn.config.aws.enabled) {
+        if (config.timeburn.aws.enabled) {
           postDynamoDB(data);
         }
-        if (timeburn.config.google.enabled) {
+        if (config.timeburn.google.enabled) {
           postGDoc(data);
         }
 

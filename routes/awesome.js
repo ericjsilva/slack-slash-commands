@@ -122,10 +122,10 @@ module.exports = function (router) {
 
             if (data.cmd === '/awesome') {
 
-                if (awesome.config.aws.enabled) {
+                if (config.awesome.aws.enabled) {
                     postDynamoDB(data);
                 }
-                if (awesome.config.google.enabled) {
+                if (config.awesome.google.enabled) {
                     postGDoc(data);
                 }
 
