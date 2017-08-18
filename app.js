@@ -34,7 +34,6 @@ router.get('/', function(req, res) {
     res.send(config.get('default.title'))
 });
 
-require('./routes/awesome.js')(router);
-require('./routes/timeburn.js')(router);
+require('./routes')(router);
 
 app.use('/', router);
