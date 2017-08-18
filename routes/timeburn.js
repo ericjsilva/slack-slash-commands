@@ -136,8 +136,25 @@ module.exports = function (router) {
       });
 
       var message = {
-        text: "*TimeBurn | " + data.userName + "*\n" + data.text
-      };
+        "attachments": [
+          {
+            "fallback": "*TimeBurn | " + data.userName + "*\n" + data.text + "for " + data.duration + " minutes.",
+            "author_name": data.userName,
+            "fields": [
+              {
+                "title": "Thing",
+                "value": data.text,
+                "short": false
+              },
+              {
+                "title": "Duration",
+                "value": data.duration + " minutes",
+                "short": false
+              }
+            ]
+          }
+        ]
+      }
 
       if (data.cmd === '/timeburn') {
 
@@ -149,7 +166,7 @@ module.exports = function (router) {
         }
 
         slack.notify(message);
-        res.send('Successfully recorded that you spent ' + data.duration + ' minutes on ' + data.text + '.');
+        res.send('Successfully recorded that you spent ' + data.duration + ' minutes on "' + data.text + '".');
       } else {
         res.end();
       }
