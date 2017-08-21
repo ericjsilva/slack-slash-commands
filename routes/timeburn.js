@@ -61,9 +61,10 @@ var postGDoc = function (data) {
 };
 
 const commandParser = function (commandText) {
+  commandText = commandText.trim();
   const tokens = tokenizer()
     .input(commandText)
-    .token('duration', /[1-9][0-9]*/)
+    .token('duration', /\d+$/)
     .resolve();
 
   return {
