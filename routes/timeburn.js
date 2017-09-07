@@ -1,5 +1,5 @@
 var config = require('config');
-const tokenizer = require('string-tokenizer')
+const tokenizer = require('string-tokenizer');
 
 var genUUID = function () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -71,7 +71,7 @@ const commandParser = function (commandText) {
     thing: commandText.substr(0, commandText.length-tokens.duration.length).trim(),
     duration: tokens.duration
   }
-}
+};
 
 
 module.exports = function (router) {
@@ -113,7 +113,7 @@ module.exports = function (router) {
 
     // Check for empty string passed in.
     if (!data.text || data.text.trim().length === 0) {
-      res.send('Your timeburn thing appears to be empty. Be timeburn and try again.');
+      res.send('Your timeburn thing appears to be empty. Remember to use the format \'`/timeburn <thing> <duration>`\' and try again.');
       res.end();
     } else {
 
@@ -155,7 +155,7 @@ module.exports = function (router) {
             ]
           }
         ]
-      }
+      };
 
       if (data.cmd === '/timeburn') {
 
