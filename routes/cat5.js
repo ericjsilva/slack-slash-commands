@@ -142,10 +142,10 @@ module.exports = function (router) {
 
       if (data.cmd === '/cat5') {
 
-          if (config.awesome.aws.enabled) {
+          if (config.cat5.aws.enabled) {
               postDynamoDB(data);
           }
-          if (config.awesome.google.enabled) {
+          if (config.cat5.google.enabled) {
               postGDoc(data);
           }
 
