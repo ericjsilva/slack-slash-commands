@@ -51,7 +51,7 @@ var postGDoc = function (data) {
 
       var obj = {};
       obj[rowNum] = [
-        [data.userName, data.text, data.duration, data.gdocDate, data.ID]
+        [data.userName, data.text, data.gdocDate, data.ID]
       ];
       console.log(obj);
       spreadsheet.add(obj);
