@@ -3,7 +3,8 @@ const tokenizer = require('string-tokenizer');
 
 var genUUID = function () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    var r = Math.random() * 16 | 0,
+      v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 };
@@ -22,8 +23,7 @@ var postDynamoDB = function (data) {
     .insert({
       ID: data.ID,
       UserName: data.userName,
-      Thing: data.text,
-      Duration: data.duration,
+      Text: data.text,
       CreatedDateTime: data.isodate
     }, function (err, data) {
       console.log(err, data)
@@ -50,7 +50,9 @@ var postGDoc = function (data) {
       console.log('Next Row Num is: ' + rowNum);
 
       var obj = {};
-      obj[rowNum] = [[data.userName, data.text, data.duration, data.gdocDate, data.ID]];
+      obj[rowNum] = [
+        [data.userName, data.text, data.duration, data.gdocDate, data.ID]
+      ];
       console.log(obj);
       spreadsheet.add(obj);
       spreadsheet.send(function (err) {
@@ -59,20 +61,6 @@ var postGDoc = function (data) {
     });
   });
 };
-
-const commandParser = function (commandText) {
-  commandText = commandText.trim();
-  const tokens = tokenizer()
-    .input(commandText)
-    .token('duration', /\d+$/)
-    .resolve();
-
-  return {
-    thing: commandText.substr(0, commandText.length-tokens.duration.length).trim(),
-    duration: tokens.duration
-  }
-};
-
 
 module.exports = function (router) {
   router.post('/cat5', function (req, res) {
@@ -86,24 +74,20 @@ module.exports = function (router) {
     var format = require('date-format');
     var timestamp = new Date();
 
-    const { thing, duration } = commandParser(req.body.text);
-
     var data = {
       token: req.body.token,
       ID: genUUID(),
       userName: req.body.user_name,
       cmd: req.body.command,
-      text: thing,
-      duration: duration,
+      text: req.body.text,
       isodate: timestamp.toISOString(),
       gdocDate: format.asString('MM/dd/yyyy hh:mm:ss', timestamp)
     };
 
-    // console.log("TOKEN: " + data.token);
-    // console.log("USER: " + data.userName);
-    // console.log("CMD: " + data.cmd);
-    // console.log("THING: " + data.text);
-    // console.log("DURATION: " + data.duration);
+    //console.log("TOKEN: " + token);
+    //console.log("USER: " + userName);
+    //console.log("CMD: " + cmd);
+    //console.log("TEXT: " + text);
 
     // Check that the slack token is valid.
     if (data.token != slackToken) {
@@ -113,7 +97,7 @@ module.exports = function (router) {
 
     // Check for empty string passed in.
     if (!data.text || data.text.trim().length === 0) {
-      res.send('Your cat5 thing appears to be empty. Remember to use the format \'`/cat5 <thing>`\' and try again.');
+      res.send('Your Cat5 thing appears to be empty. Remember to use the format \'`/cat5 <thing>`\' and try again.');
       res.end();
     } else {
 
@@ -142,22 +126,18 @@ module.exports = function (router) {
 
       if (data.cmd === '/cat5') {
 
-          if (config.cat5.aws.enabled) {
-              postDynamoDB(data);
-          }
-          if (config.cat5.google.enabled) {
-              postGDoc(data);
-          }
+        if (config.cat5.aws.enabled) {
+          postDynamoDB(data);
+        }
+        if (config.cat5.google.enabled) {
+          postGDoc(data);
+        }
 
-          slack.notify(message);
-          res.send('Thanks for recording your Cat5 thing (' + data.text + ')');
+        slack.notify(message);
+        res.send('Thanks for recording your Cat5 thing (' + data.text + ')');
       } else {
-          res.end();
+        res.end();
       }
     }
   });
 };
-
-
-
-
