@@ -24,7 +24,8 @@ var postDynamoDB = function (data) {
       ID: data.ID,
       UserName: data.userName,
       Text: data.text,
-      CreatedDateTime: data.isodate
+      CreatedDateTime: data.isodate,
+      Month: data.month,
     }, function (err, data) {
       console.log(err, data)
     });
@@ -51,7 +52,7 @@ var postGDoc = function (data) {
 
       var obj = {};
       obj[rowNum] = [
-        [data.userName, data.text, data.gdocDate, data.ID]
+        [data.userName, data.text, data.gdocDate, data.ID, data.month]
       ];
       console.log(obj);
       spreadsheet.add(obj);
@@ -80,6 +81,7 @@ module.exports = function (router) {
       userName: req.body.user_name,
       cmd: req.body.command,
       text: req.body.text,
+      month: format.asString('yyyy-MM', timestamp),
       isodate: timestamp.toISOString(),
       gdocDate: format.asString('MM/dd/yyyy hh:mm:ss', timestamp)
     };
