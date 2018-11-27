@@ -23,18 +23,18 @@
     "url": "https://github.com/ericjsilva/slack-awesomeness"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "6.10"
   },
   "dependencies": {
     "aws-dynamodb": "^0.1.27",
-    "body-parser": "^1.12.3",
-    "compression": "^1.2.2",
-    "config": "^1.19.0",
-    "date-format": "0.0.2",
-    "debug": "~2.1.1",
-    "edit-google-spreadsheet": "^0.2.19",
-    "express": "~4.12.2",
-    "node-slackr": "^0.1.0",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "config": "^3.0.0",
+    "date-format": "^2.0.0",
+    "debug": "^4.1.0",
+    "edit-google-spreadsheet": "^0.3.0",
+    "express": "^4.16.4",
+    "node-slackr": "^1.0.0",
     "string-tokenizer": "0.0.8"
   }
 }
