@@ -20,20 +20,20 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ericjsilva/slack-awesomeness"
+    "url": "https://github.com/ericjsilva/slack-slash-commands"
   },
   "engines": {
-    "node": "6.10"
+    "node": "12.x"
   },
   "dependencies": {
     "aws-dynamodb": "^0.1.27",
-    "body-parser": "^1.18.3",
-    "compression": "^1.7.2",
-    "config": "^3.0.0",
-    "date-format": "^2.0.0",
-    "debug": "^4.1.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "config": "^3.3.1",
+    "date-format": "^2.1.0",
+    "debug": "^4.1.1",
     "edit-google-spreadsheet": "^0.3.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "node-slackr": "^1.0.0",
     "string-tokenizer": "0.0.8"
   }
